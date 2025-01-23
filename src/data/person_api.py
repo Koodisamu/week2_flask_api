@@ -1,7 +1,10 @@
 from flask import Flask, request
 from person_service import db_get_persons, db_get_person_by_id, db_create_person, db_update_person, db_delete_person 
+from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:samupostgres@localhost:5432/skillio'
+db = SQLAlchemy(app)
 
 @app.route("/", methods=["GET"])
 def index():
